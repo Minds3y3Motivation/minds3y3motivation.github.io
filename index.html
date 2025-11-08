@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mind’s Eye Motivation</title>
+  <!-- Google Fonts Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -16,40 +18,59 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      position: relative;
     }
+
     img {
       max-width: 180px;
       border-radius: 20px;
       margin-bottom: 20px;
     }
+
     h1 {
       font-size: 2em;
       color: #ff8c00;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 1.1em;
       color: #d1d1d1;
       max-width: 500px;
       line-height: 1.6;
+      margin-bottom: 30px;
     }
+
     footer {
       position: absolute;
       bottom: 10px;
       font-size: 0.9em;
       color: #888;
     }
+
+    /* TinyChat container styling */
+    #tinychat-container {
+      width: 100%;
+      max-width: 400px;
+      height: 500px;
+      margin: 0 auto 20px;
+    }
   </style>
 </head>
 <body>
-  <img src=<img src="https://raw.githubusercontent.com/BigDaddyDave/MindsEyeMotivation/main/logo.png" alt="Mind's Eye Motivation Logo" />
+  <!-- Logo -->
+  <img src="logo.png" alt="Mind's Eye Motivation Logo" />
+
+  <!-- Heading & Description -->
   <h1>Welcome to Minds Eye Motivation</h1>
   <p>Your source for daily motivation, self-reflection, and growth. Chat with our AI below and get inspired to rise higher.</p>
 
-  <!-- 🧠 Your TinyChat AI Embed -->
-<div id="tinychat-container"></div>
-  <script data-id="cmhpovhfh000ei504hb015q2c" src="https://tinychat.ai/tinychat.js" async defer></script>
+  <!-- TinyChat AI Embed -->
+  <div id="tinychat-container">
+    <script data-id="cmhpovhfh000ei504hb015q2c" src="https://tinychat.ai/tinychat.js" async defer></script>
+  </div>
 
+  <!-- Footer -->
   <footer>© 2025 Mind’s Eye Motivation</footer>
 </body>
 </html>
