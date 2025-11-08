@@ -4,79 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mind’s Eye Motivation</title>
-  <!-- Google Fonts Poppins -->
+
+  <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       background: linear-gradient(135deg, #0a0f1f, #1e2959);
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
-      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
+      justify-content: flex-start;
+      text-align: center;
+      overflow: hidden;
     }
 
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* Logo */
     img {
-      max-width: 180px;
+      max-width: 160px;
       border-radius: 20px;
-      margin-bottom: 20px;
+      margin: 20px 0 10px;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    /* Text */
+    h1, p {
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       color: #ff8c00;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 1em;
       color: #d1d1d1;
-      max-width: 500px;
       line-height: 1.6;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      padding: 0 10px;
     }
 
+    /* Chatbot */
+    iframe {
+      border-radius: 12px;
+      border: 1px solid #EAEAEA;
+      background-color: #111;
+      width: 100%;
+      flex-grow: 1;
+      height: 70vh;
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Footer */
     footer {
-      position: absolute;
-      bottom: 10px;
       font-size: 0.9em;
       color: #888;
+      margin: 15px 0;
+      transition: opacity 0.6s ease;
     }
 
-    /* TinyChat container styling */
-    #tinychat-container {
-      width: 100%;
-      max-width: 400px;
-      height: 500px;
-      margin: 0 auto 20px;
+    /* Hidden State */
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-15px);
+      pointer-events: none;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 600px) {
+      main {
+        padding: 10px;
+      }
+
+      img {
+        max-width: 130px;
+      }
+
+      iframe {
+        height: 75vh;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
+
 <body>
-  <!-- Logo -->
-  <img src="logo.png" alt="Mind's Eye Motivation Logo" />
+  <main id="main-content">
+    <!-- Branding Section -->
+    <div id="intro">
+      <img src="logo.png" alt="Mind's Eye Motivation Logo" />
+      <h1>Welcome to Mind’s Eye Motivation</h1>
+      <p>Your source for daily motivation, self-reflection, and growth. Chat with our AI below and get inspired to rise higher.</p>
+    </div>
 
-  <!-- Heading & Description -->
-  <h1>Welcome to Minds Eye Motivation</h1>
-  <p>Your source for daily motivation, self-reflection, and growth. Chat with our AI below and get inspired to rise higher.</p>
+    <!-- Chatbot -->
+    <iframe
+      id="chatbot"
+      src="https://app.livechatai.com/aibot-iframe/cmhqtfn1t0001jx042hm9u2ft"
+      frameborder="0"
+      allow="microphone"
+    ></iframe>
 
-  <!-- TinyChat AI Embed -->
-  <div id="chat-widget-container" style="width:100%; max-width:400px; height:500px; margin:20px auto; background:#111;">
-  <script 
-    data-id="cmhpovhfh000ei504hb015q2c" 
-    src="https://app.livechatai.com/embed.js" 
-    async defer>
+    <!-- Footer -->
+    <footer>© 2025 Mind’s Eye Motivation</footer>
+  </main>
+
+  <script>
+    // Fade out intro on scroll or tap
+    const main = document.getElementById('main-content');
+    const intro = document.getElementById('intro');
+    const footer = document.querySelector('footer');
+
+    // Fade out when user scrolls
+    main.addEventListener('scroll', () => {
+      if (main.scrollTop > 30) {
+        intro.classList.add('fade-out');
+        footer.classList.add('fade-out');
+      } else {
+        intro.classList.remove('fade-out');
+        footer.classList.remove('fade-out');
+      }
+    });
+
+    // Fade out when user taps anywhere near the chat
+    document.getElementById('chatbot').addEventListener('focus', () => {
+      intro.classList.add('fade-out');
+      footer.classList.add('fade-out');
+    });
   </script>
-</div>
-
-
-  <!-- Footer -->
-  <footer>© 2025 Mind’s Eye Motivation</footer>
 </body>
 </html>
-
