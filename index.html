@@ -2,24 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minds_3y3_Motivation</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Base Styles */
-    * { box-sizing: border-box; }
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+    }
 
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0a0f1f, #1e2959);
-      color: #fff;
-      overflow-x: hidden;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      overflow: hidden;
     }
 
     main {
@@ -35,10 +42,17 @@
       scroll-behavior: smooth;
     }
 
+    /* Logo */
     img {
       max-width: 160px;
       border-radius: 20px;
       margin: 20px 0 10px;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    /* Text */
+    h1, p {
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     h1 {
@@ -55,172 +69,114 @@
       padding: 0 10px;
     }
 
+    /* Chatbot with dynamic pulsing glow */
+    iframe {
+      border-radius: 12px;
+      border: 1px solid #EAEAEA;
+      background-color: #111;
+      width: 100%;
+      flex-grow: 1;
+      height: 85vh; /* Desktop height */
+      box-shadow: 0 0 20px #ff8c00, 0 0 40px rgba(255, 140, 0, 0.3);
+      animation: pulseGlow 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      iframe {
+        height: 88vh; /* Mobile height */
+      }
+
+      main {
+        padding: 10px;
+      }
+
+      img {
+        max-width: 130px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 0.95em;
+      }
+    }
+
+    /* Glow animation */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 15px #ff8c00, 0 0 30px rgba(255, 140, 0, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 25px #ff9c33, 0 0 50px rgba(255, 156, 51, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 15px #ff8c00, 0 0 30px rgba(255, 140, 0, 0.2);
+      }
+    }
+
+    /* Footer */
     footer {
       font-size: 0.9em;
       color: #888;
       margin: 15px 0;
+      transition: opacity 0.6s ease;
     }
 
-    /* Chat Button */
-    #open-chat-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #ff8c00;
-      border: none;
-      padding: 15px 22px;
-      font-size: 1em;
-      color: #fff;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00, 0 0 30px #ff8c00;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-
-    #open-chat-btn:hover {
-      box-shadow: 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
-      transform: scale(1.1);
-    }
-
-    /* Chat Widget */
-    #chat-container {
-      position: fixed;
-      width: 90%;
-      max-width: 400px;
-      height: 80vh;
-      border-radius: 12px 12px 0 0;
-      overflow: hidden;
-      border: 2px solid #ff8c00;
-      box-shadow: 0 0 20px #ff8c00, 0 0 40px #ff8c00 inset;
-      background-color: #111;
-      cursor: move;
-      z-index: 999;
-      bottom: -100%; /* initially hidden */
-      right: 25px; /* default starting position */
-      animation: glow 1.5s infinite alternate;
-      transition: bottom 0.5s ease;
-    }
-
-    @keyframes glow {
-      from { box-shadow: 0 0 20px #ff8c00, 0 0 40px #ff8c00 inset; }
-      to { box-shadow: 0 0 35px #ff8c00, 0 0 60px #ff8c00 inset; }
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 12px 12px 0 0;
-    }
-
-    @media (max-width: 600px) {
-      #chat-container {
-        width: 95%;
-        max-width: 95%;
-        height: 88vh;
-      }
-
-      #open-chat-btn {
-        bottom: 15px;
-        right: 15px;
-        padding: 12px 18px;
-      }
-
-      h1 { font-size: 1.5em; }
-      p { font-size: 0.95em; }
+    /* Hidden State */
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-15px);
+      pointer-events: none;
     }
   </style>
 </head>
 
 <body>
   <main id="main-content">
+    <!-- Branding Section -->
     <div id="intro">
-      <img src="logo.png" alt="Minds_3y3_Motivation Logo">
+      <img src="logo.png" alt="Minds_3y3_Motivation Logo" />
       <h1>Welcome to Minds_3y3_Motivation</h1>
-      <p>Connect with our AI using the chat button below and get inspired!</p>
+      <p>Your source for daily motivation, self-reflection, and growth. Chat with our AI below and get inspired to rise higher.</p>
     </div>
 
+    <!-- Chatbot -->
+    <iframe
+      id="chatbot"
+      src="https://app.livechatai.com/aibot-iframe/cmhqtfn1t0001jx042hm9u2ft"
+      frameborder="0"
+      allow="microphone"
+    ></iframe>
+
+    <!-- Footer -->
     <footer>© 2025 Minds_3y3_Motivation</footer>
   </main>
 
-  <!-- Floating Chat Button -->
-  <button id="open-chat-btn">Chat</button>
-
-  <!-- Chat Widget -->
-  <div id="chat-container">
-    <iframe id="chatbot" src="https://app.livechatai.com/aibot-iframe/cmhqtfn1t0001jx042hm9u2ft" allow="microphone"></iframe>
-  </div>
-
   <script>
-    const chatContainer = document.getElementById('chat-container');
-    const openChatBtn = document.getElementById('open-chat-btn');
+    // Fade out intro on scroll or tap
+    const main = document.getElementById('main-content');
+    const intro = document.getElementById('intro');
+    const footer = document.querySelector('footer');
 
-    let chatOpen = false;
-
-    // Default starting position
-    let chatLeft = window.innerWidth - chatContainer.offsetWidth - 25;
-    let chatTop = window.innerHeight - chatContainer.offsetHeight - 25;
-
-    chatContainer.style.left = chatLeft + 'px';
-    chatContainer.style.top = chatTop + 'px';
-
-    // Open/Close chat
-    openChatBtn.addEventListener('click', () => {
-      if (!chatOpen) {
-        chatContainer.style.bottom = '';
-        chatContainer.style.top = chatTop + 'px';
-        openChatBtn.textContent = 'Close';
-        chatOpen = true;
+    // Fade out when user scrolls
+    main.addEventListener('scroll', () => {
+      if (main.scrollTop > 30) {
+        intro.classList.add('fade-out');
+        footer.classList.add('fade-out');
       } else {
-        chatContainer.style.bottom = '-100%';
-        openChatBtn.textContent = 'Chat';
-        chatOpen = false;
+        intro.classList.remove('fade-out');
+        footer.classList.remove('fade-out');
       }
     });
 
-    // Drag functionality
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    chatContainer.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      offsetX = e.clientX - chatContainer.getBoundingClientRect().left;
-      offsetY = e.clientY - chatContainer.getBoundingClientRect().top;
-      chatContainer.style.transition = 'none'; // remove animation while dragging
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        let left = e.clientX - offsetX;
-        let top = e.clientY - offsetY;
-
-        // Keep chat fully within viewport
-        left = Math.max(0, Math.min(left, window.innerWidth - chatContainer.offsetWidth));
-        top = Math.max(0, Math.min(top, window.innerHeight - chatContainer.offsetHeight));
-
-        chatContainer.style.left = left + 'px';
-        chatContainer.style.top = top + 'px';
-
-        // Update last dropped position
-        chatLeft = left;
-        chatTop = top;
-      }
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        chatContainer.style.transition = 'bottom 0.5s ease'; // restore animation
-      }
-    });
-
-    // Optional: update position on window resize
-    window.addEventListener('resize', () => {
-      chatLeft = Math.min(chatLeft, window.innerWidth - chatContainer.offsetWidth);
-      chatTop = Math.min(chatTop, window.innerHeight - chatContainer.offsetHeight);
-      chatContainer.style.left = chatLeft + 'px';
-      chatContainer.style.top = chatTop + 'px';
+    // Fade out when user taps anywhere near the chat
+    document.getElementById('chatbot').addEventListener('focus', () => {
+      intro.classList.add('fade-out');
+      footer.classList.add('fade-out');
     });
   </script>
 </body>
