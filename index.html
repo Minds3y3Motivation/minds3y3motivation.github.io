@@ -69,53 +69,16 @@
       padding: 0 10px;
     }
 
-    /* Chatbot with dynamic pulsing glow */
+    /* Chatbot */
     iframe {
       border-radius: 12px;
       border: 1px solid #EAEAEA;
       background-color: #111;
       width: 100%;
       flex-grow: 1;
-      height: 85vh; /* Desktop height */
-      box-shadow: 0 0 20px #ff8c00, 0 0 40px rgba(255, 140, 0, 0.3);
-      animation: pulseGlow 3s ease-in-out infinite;
+      height: 85vh; /* Increased from 70vh */
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
       transition: all 0.3s ease;
-    }
-
-    /* Mobile adjustments */
-    @media (max-width: 600px) {
-      iframe {
-        height: 88vh; /* Mobile height */
-      }
-
-      main {
-        padding: 10px;
-      }
-
-      img {
-        max-width: 130px;
-      }
-
-      h1 {
-        font-size: 1.5em;
-      }
-
-      p {
-        font-size: 0.95em;
-      }
-    }
-
-    /* Glow animation */
-    @keyframes pulseGlow {
-      0% {
-        box-shadow: 0 0 15px #ff8c00, 0 0 30px rgba(255, 140, 0, 0.2);
-      }
-      50% {
-        box-shadow: 0 0 25px #ff9c33, 0 0 50px rgba(255, 156, 51, 0.4);
-      }
-      100% {
-        box-shadow: 0 0 15px #ff8c00, 0 0 30px rgba(255, 140, 0, 0.2);
-      }
     }
 
     /* Footer */
@@ -131,6 +94,29 @@
       opacity: 0;
       transform: translateY(-15px);
       pointer-events: none;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 600px) {
+      main {
+        padding: 10px;
+      }
+
+      img {
+        max-width: 130px;
+      }
+
+      iframe {
+        height: 88vh; /* Increased from 75vh */
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
