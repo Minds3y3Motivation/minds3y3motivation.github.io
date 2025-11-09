@@ -9,91 +9,110 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset & Base Styles */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
-      margin: 0;
-      padding: 0;
       height: 100%;
-      background: linear-gradient(135deg, #0a0f1f, #1e2959);
-      color: #ffffff;
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0f1f, #1e2959);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      text-align: center;
-      overflow: hidden;
     }
 
     main {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
+      flex: 1;
       padding: 20px;
       overflow: hidden;
     }
 
-    /* Logo */
-    img {
-      max-width: 160px;
-      border-radius: 20px;
-      margin: 20px 0 10px;
+    /* Header */
+    #intro {
+      text-align: center;
+      margin-bottom: 10px;
+      transition: all 0.5s ease; /* smooth animation */
     }
 
-    /* Text */
-    h1 {
+    #intro img {
+      max-width: 160px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      transition: all 0.5s ease;
+    }
+
+    #intro h1 {
       font-size: 1.8em;
       color: #ff8c00;
       margin-bottom: 10px;
+      transition: all 0.5s ease;
     }
 
-    p {
+    #intro p {
       font-size: 1em;
       color: #d1d1d1;
       line-height: 1.6;
-      margin-bottom: 20px;
       padding: 0 10px;
+      transition: all 0.5s ease;
     }
 
     /* Chatbot */
-    iframe {
+    #chatbot {
+      width: 100%;
+      flex-grow: 1;
       border-radius: 12px;
       border: 1px solid #EAEAEA;
       background-color: #111;
-      width: 100%;
       box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
-      transition: all 0.3s ease;
     }
 
     /* Footer */
     footer {
       font-size: 0.9em;
       color: #888;
-      margin: 15px 0;
+      margin-top: 10px;
+      text-align: center;
+      transition: all 0.5s ease;
     }
 
-    /* Mobile Adjustments */
-    @media (max-width: 600px) {
-      main {
-        padding: 10px;
-      }
+    /* Hidden state for smooth slide/fade */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
+    }
 
-      img {
+    .fade-slide-footer {
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      #intro img {
         max-width: 130px;
       }
 
-      h1 {
+      #intro h1 {
         font-size: 1.5em;
       }
 
-      p {
+      #intro p {
         font-size: 0.95em;
       }
     }
@@ -101,8 +120,8 @@
 </head>
 
 <body>
-  <main>
-    <!-- Branding Section -->
+  <main id="main-content">
+    <!-- Header -->
     <div id="intro">
       <img src="logo.png" alt="Minds_3y3_Motivation Logo" />
       <h1>Welcome to Minds_3y3_Motivation</h1>
@@ -126,19 +145,27 @@
     const footer = document.querySelector('footer');
     const chatbot = document.getElementById('chatbot');
 
-    // Function to resize the iframe dynamically
-    function resizeChatbot() {
-      const windowHeight = window.innerHeight;
-      const introHeight = intro.offsetHeight;
-      const footerHeight = footer.offsetHeight;
-      chatbot.style.height = (windowHeight - introHeight - footerHeight - 40) + "px"; // 40px extra padding
-    }
+    // Smooth fade/slide header/footer on scroll
+    main.addEventListener('scroll', () => {
+      if (main.scrollTop > 20) {
+        intro.classList.add('fade-slide');
+        footer.classList.add('fade-slide-footer');
+      } else {
+        intro.classList.remove('fade-slide');
+        footer.classList.remove('fade-slide-footer');
+      }
+    });
 
-    // Initial resize
-    resizeChatbot();
+    // Also fade when chatbot is focused
+    chatbot.addEventListener('focus', () => {
+      intro.classList.add('fade-slide');
+      footer.classList.add('fade-slide-footer');
+    });
 
-    // Resize on window resize
-    window.addEventListener('resize', resizeChatbot);
+    chatbot.addEventListener('blur', () => {
+      intro.classList.remove('fade-slide');
+      footer.classList.remove('fade-slide-footer');
+    });
   </script>
 </body>
 </html>
