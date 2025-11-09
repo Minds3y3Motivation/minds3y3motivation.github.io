@@ -34,12 +34,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       width: 100%;
       max-width: 500px;
       padding: 20px;
-      overflow-y: auto;
-      scroll-behavior: smooth;
+      overflow: hidden;
     }
 
     /* Logo */
@@ -47,14 +45,9 @@
       max-width: 160px;
       border-radius: 20px;
       margin: 20px 0 10px;
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     /* Text */
-    h1, p {
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
     h1 {
       font-size: 1.8em;
       color: #ff8c00;
@@ -75,8 +68,6 @@
       border: 1px solid #EAEAEA;
       background-color: #111;
       width: 100%;
-      flex-grow: 1;
-      height: 85vh; /* Increased from 70vh */
       box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
       transition: all 0.3s ease;
     }
@@ -86,14 +77,6 @@
       font-size: 0.9em;
       color: #888;
       margin: 15px 0;
-      transition: opacity 0.6s ease;
-    }
-
-    /* Hidden State */
-    .fade-out {
-      opacity: 0;
-      transform: translateY(-15px);
-      pointer-events: none;
     }
 
     /* Mobile Adjustments */
@@ -104,10 +87,6 @@
 
       img {
         max-width: 130px;
-      }
-
-      iframe {
-        height: 88vh; /* Increased from 75vh */
       }
 
       h1 {
@@ -122,7 +101,7 @@
 </head>
 
 <body>
-  <main id="main-content">
+  <main>
     <!-- Branding Section -->
     <div id="intro">
       <img src="logo.png" alt="Minds_3y3_Motivation Logo" />
@@ -143,27 +122,23 @@
   </main>
 
   <script>
-    // Fade out intro on scroll or tap
-    const main = document.getElementById('main-content');
     const intro = document.getElementById('intro');
     const footer = document.querySelector('footer');
+    const chatbot = document.getElementById('chatbot');
 
-    // Fade out when user scrolls
-    main.addEventListener('scroll', () => {
-      if (main.scrollTop > 30) {
-        intro.classList.add('fade-out');
-        footer.classList.add('fade-out');
-      } else {
-        intro.classList.remove('fade-out');
-        footer.classList.remove('fade-out');
-      }
-    });
+    // Function to resize the iframe dynamically
+    function resizeChatbot() {
+      const windowHeight = window.innerHeight;
+      const introHeight = intro.offsetHeight;
+      const footerHeight = footer.offsetHeight;
+      chatbot.style.height = (windowHeight - introHeight - footerHeight - 40) + "px"; // 40px extra padding
+    }
 
-    // Fade out when user taps anywhere near the chat
-    document.getElementById('chatbot').addEventListener('focus', () => {
-      intro.classList.add('fade-out');
-      footer.classList.add('fade-out');
-    });
+    // Initial resize
+    resizeChatbot();
+
+    // Resize on window resize
+    window.addEventListener('resize', resizeChatbot);
   </script>
 </body>
 </html>
